@@ -293,3 +293,6 @@ pyrightconfig.json
 /.idea/misc.xml
 /.idea/modules.xml
 /.idea/vcs.xml
+
+# png 파일 제외
+*.png
