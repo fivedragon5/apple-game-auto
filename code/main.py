@@ -1,73 +1,37 @@
+from config import SCREENSHOT_TAKE_DELAY
 from datetime import datetime
-from apple2 import greedy_sum10_rectangles
+from screenshot import take_screenshot
+from ocr import check_image
+from recognize import greedy_sum10_rectangles
 from mouse import drag_all
-
 import time
+import sys
 
-grid = [
-    [8, 0, 0],
-    [0, -1, 2]
-]
-print(greedy_sum10_rectangles(grid))
+print("=== 사과 게임 시작 ===")
 
-grid2 = [
-    [8, 0, 0],
-    [0, 0, 2]
-]
-print(greedy_sum10_rectangles(grid2))
+# 스크린샷 지연 시간
+screenshot_delay = 1
 
-grid3 = [
-    [8, 8, 2],
-    [0, 0, 2]
-]
-print(greedy_sum10_rectangles(grid3))
+# 현재 시간 파일명 생성
+fileName = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
 
-grid4 = [
-    [1, 2, 3, -1, 4, 5, 0, 0, 0, 1, 1, 1, 2, 2, 3, 0, 0],
-    [0, 0, 0, -1, 0, 0, 0, 5, 0, 1, 3, 3, 0, 0, 0, 0, 0],
-    [2, 3, 0, -1, 5, 1, 2, 2, 1, 1, 0, 0, 0, 0, 2, 3, 0],
-    [0, 0, 0, -1, 0, 0, 0, 0, 3, 4, 3, 0, 0, 0, 0, 1, 1],
-    [3, 0, 0, -1, 3, 3, 3, 3, 0, 0, 0, 2, 2, 2, 0, 0, 0],
-    [1, 2, 1, -1, 1, 1, 2, 2, 2, 1, 2, 1, 0, 0, 0, 1, 1],
-    [0, 0, 0, -1, 0, 0, 0, 0, 0, 3, 3, 3, 2, 2, 2, 0, 0],
-    [1, 1, 1, -1, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, -1, 0, 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 0, 0],
-    [2, 2, 2, -1, 1, 1, 1, 3, 3, 0, 0, 0, 0, 0, 0, 2, 2],
-]
-result = greedy_sum10_rectangles(grid4)
-print(result)
+# 사진 찍기전 딜레이 시간
+time.sleep(SCREENSHOT_TAKE_DELAY)
+
+# 스크린샷 찍기
+take_screenshot(fileName)
+
+# 이미지 문자 추출
+grid = check_image(fileName)
+
+# 경로 탐색 시작
+result = greedy_sum10_rectangles(grid)
+
+for coords in result:
+    print(coords)
 
 # 드래그 수행
-drag_all(result, 0.1)
+drag_all(result)
 
-# 샘플 데이터
-# sample_data = [[0, 0, 0, 0], [0, 0, 1, 1], [0, 0, 2, 2], [0, 0, 3, 3], [0, 0, 4, 4], [0, 0, 5, 5], [0, 0, 6, 6], [0, 0, 7, 7], [0, 0, 8, 8], [0, 0, 9, 9]]
-# time.sleep(1)
-
-# 드래그 수행
-# drag_all(sample_data, 0.1)
-
-# check_image("2025_04_24_02_49_32")
-
-# print("2초 안에 퍼즐의 좌측 상단 셀에 마우스를 올려두세요...")
-# time.sleep(2)
-#
-# print("마우스 위치를 5초 동안 출력합니다:")
-# for _ in range(100):
-#     pos = pyautogui.position()
-#     print(f"현재 위치: {pos}")
-#     time.sleep(1)
-
-# 1번 사과     : 450 290 500 340
-# 2번 사과     : 510 290 550 330
-# 18번 사과    : 450 350 490 390
-
-# 첫번째 사과 좌측 상단 좌표: 441, 289
-# 첫번째 사과 우측 하단 좌표: 498 344
-# 498 - 441 = 56
-# 344 - 289 = 56
-# 마지막 사과 좌측 상단 좌표 : 1418, 859
-# 마지막 사과 우측 하단 좌표: 1424, 864
-
-now = datetime.now()
-fileName = now.strftime("%Y_%m_%d_%H_%M_%S") + ".png"
+print("=== 사과 게임 종료 ===")
+sys.exit(0)

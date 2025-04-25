@@ -1,29 +1,26 @@
+from config import IMAGE_SCREENSHOT_FOLDER, IMAGE_CONVERT_FOLDER, IMAGE_DEBUG_FOLDER, PYTESSERACT_CMD
 import pytesseract
 import cv2
-import os
 import numpy as np
 
 def check_image(image_name):
-    # ====== 디버그 디렉토리 생성 ======
-    os.makedirs("./debug_cells", exist_ok=True)
-
     # OCR 설정
-    pytesseract.pytesseract.tesseract_cmd = '/opt/homebrew/bin/tesseract'
+    pytesseract.pytesseract.tesseract_cmd = PYTESSERACT_CMD
 
     # 사과 게임 스크린샷 로드
-    image = cv2.imread("../image/" + image_name + ".png") # 시도
+    image = cv2.imread(IMAGE_SCREENSHOT_FOLDER + image_name + ".png")
 
     # 그레이스케일 변환
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    cv2.imwrite("./debug_cells/" + image_name + "_gray.png", gray)
+    cv2.imwrite(IMAGE_CONVERT_FOLDER + image_name + "_gray.png", gray)
 
     # 색상 반전
     inverted = cv2.bitwise_not(gray)
-    cv2.imwrite("./debug_cells/" + image_name + "_inverted.png", inverted)
+    cv2.imwrite(IMAGE_CONVERT_FOLDER + image_name + "_inverted.png", inverted)
 
     # 이진화
     _, binaryFullImage = cv2.threshold(inverted, 100, 255, cv2.THRESH_BINARY)
-    cv2.imwrite("./debug_cells/" + image_name + "_binary.png", binaryFullImage)
+    cv2.imwrite(IMAGE_CONVERT_FOLDER + image_name + "_binary.png", binaryFullImage)
 
     # 기본 설정
     ROWS, COLS = 10, 17
@@ -79,7 +76,7 @@ def check_image(image_name):
             grid[row][col] = int(text)
 
             # 디버깅용 이미지 저장
-            cell_filename = f"./debug_cells/cell_{row}_{col}_{text if text else 'empty'}.png"
+            cell_filename = f"{IMAGE_DEBUG_FOLDER}cell_{row}_{col}_{text if text else 'empty'}.png"
             cv2.imwrite(cell_filename, resized)
 
     # ====== 결과 출력 ======
