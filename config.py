@@ -16,7 +16,7 @@ SCREENSHOT_OFFSET_X = 435   # 스크린샷 시작 X 좌표
 SCREENSHOT_OFFSET_Y = 280   # 스크린샷 시작 Y 좌표
 SCREENSHOT_WIDTH = 1000     # 스크린샷 너비
 SCREENSHOT_HEIGHT = 585     # 스크린샷 높이
-SCREENSHOT_TAKE_DELAY = 1   # 스크린샷 찍기 전 대기 시간
+SCREENSHOT_TAKE_DELAY = 3   # 스크린샷 찍기 전 대기 시간
 
 # OCR 설정
 PYTESSERACT_CMD = '/opt/homebrew/bin/tesseract' # Tesseract 설치 경로
