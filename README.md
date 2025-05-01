@@ -48,5 +48,10 @@ ROOT
 # 🎬 Play 영상
 https://github.com/user-attachments/assets/95e69f2b-8a74-47e9-afb4-5332b686064c
 
+# 📜 개선 사항
+2025.05.01 : [사과 탐색 알고리즘 개선](https://github.com/fivedragon5/apple-game-auto/pull/1)
+ - 평균 점수 90점 -> 100점
+
+
 
 
