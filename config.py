@@ -16,7 +16,7 @@ SCREENSHOT_OFFSET_X = 435   # 스크린샷 시작 X 좌표
 SCREENSHOT_OFFSET_Y = 280   # 스크린샷 시작 Y 좌표
 SCREENSHOT_WIDTH = 1000     # 스크린샷 너비
 SCREENSHOT_HEIGHT = 585     # 스크린샷 높이
-SCREENSHOT_TAKE_DELAY = 3   # 스크린샷 찍기 전 대기 시간
+SCREENSHOT_TAKE_DELAY = 5   # 스크린샷 찍기 전 대기 시간
 
 # OCR 설정
 PYTESSERACT_CMD = '/opt/homebrew/bin/tesseract' # Tesseract 설치 경로
@@ -26,5 +26,5 @@ DRAG_OFFSET_X = 445                 # 드래그 시작 X 좌표
 DRAG_OFFSET_Y = 285                 # 드래그 시작 Y 좌표
 DRAG_CELL_WIDTH = 56                # 드래그 셀 너비
 DRAG_CELL_HEIGHT = 56               # 드래그 셀 높이
-DRAG_MOUSE_DOWN_DELAY = 0.05        # 마우스 다운 대기 시간
-DRAG_MOUSE_MOVE_TO_DURATION = 0.35  # 마우스 드래그 이동 시간
+DRAG_MOUSE_DOWN_DELAY = 0.02        # 마우스 다운 대기 시간
+DRAG_MOUSE_MOVE_TO_DURATION = 0.1  # 마우스 드래그 이동 시간

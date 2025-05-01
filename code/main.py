@@ -9,9 +9,6 @@ import sys
 
 print("=== 사과 게임 시작 ===")
 
-# 스크린샷 지연 시간
-screenshot_delay = 1
-
 # 현재 시간 파일명 생성
 fileName = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
 
