@@ -43,14 +43,6 @@ def check_image(image_name):
 
             resized = cv2.resize(cell_img, None, fx=2, fy=2, interpolation=cv2.INTER_LINEAR)
 
-            # resized_blurred = cv2.GaussianBlur(resized, (3, 3), 0) # 9
-            # resized_blurred = cv2.bilateralFilter(resized, 9, 75, 75)
-            # resized = cv2.medianBlur(resized, 7) # 3x3 메디안 필터 적용 (홀수 크기 사용
-
-            # kernel = np.ones((2, 2), np.uint8) # 작은 커널 사용
-            # esized = cv2.dilate(resized, kernel, iterations=1) # 팽창
-            # resized = cv2.erode(resized, kernel, iterations=1) # 침식
-
             # OCR (숫자만 허용)
             config = "--psm 10 -c tessedit_char_whitelist=123456789"
             text = pytesseract.image_to_string(resized, config=config).strip()
